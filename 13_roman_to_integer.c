@@ -1,43 +1,36 @@
+int numeral_value (char s)
+{
+	switch (s) {
+		case 'I':
+			return 1;
+		case 'V':
+			return 5;
+		case 'X':
+			return 10;
+		case 'L':
+			return 50;
+		case 'C':
+			return 100;
+		case 'D':
+			return 500;
+		case 'M':
+			return 1000;
+		default:
+			return 0;
+	}
+}
+
 int romanToInt(char* s)
 {
     int num = 0;
+	int cur = numeral_value(*s);
     while (*s != '\0') {
-        int next_letter = *(s + 1);
-        switch (*s) {
-        case 'I':
-            if (next_letter != 'V' && next_letter != 'X')
-                num += 1;
-            else
-                num -= 1;
-            break;
-        case 'V':
-            num += 5;
-            break;
-        case 'X':
-            if (next_letter != 'L' && next_letter != 'C')
-                num += 10;
-            else
-                num -= 10;
-            break;
-        case 'L':
-            num += 50;
-            break;
-        case 'C':
-            if (next_letter != 'D' && next_letter != 'M')
-                num += 100;
-            else
-                num -= 100;
-            break;
-        case 'D':
-            num += 500;
-            break;
-        case 'M':
-            num += 1000;
-            break;
-        default:
-            break;
-        }
-        s++;
+		int next = numeral_value(*(++s));
+		if (cur >= next)
+			num += cur;
+		else
+			num -= cur;
+		cur = next;
     }
     return num;
 }
