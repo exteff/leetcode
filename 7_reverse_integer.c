@@ -2,7 +2,7 @@ int reverse(int x)
 {
     int rev = 0;
     while (x) {
-        if (rev < -214748364 || rev > 214748364)
+        if (rev < INT_MIN / 10 || rev > INT_MAX / 10)
             return 0;
         rev *= 10;
         rev += x % 10;
