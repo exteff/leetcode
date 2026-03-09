@@ -1,10 +1,8 @@
 int singleNumber(int* nums, int numsSize)
 {
-    if (nums == NULL)
-        return 0;
-    int once = nums[0];
+    int res = nums[0]; // note numsSize >= 1
     for (int i = 1; i < numsSize; i++) {
-        once ^= nums[i];
+        res ^= nums[i];
     }
-    return once;
+    return res;
 }
